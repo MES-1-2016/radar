@@ -73,7 +73,6 @@ class MandatoListsTest(TestCase):
             self.assertEquals(mandato.day, 1)
             self.assertEquals(mandato.month, 1)
 
-
 class PeriodosRetrieverTest(TestCase):
 
     @classmethod
@@ -191,20 +190,11 @@ class PeriodosRetrieverTest(TestCase):
         retriever = utils.PeriodosRetriever(casa_nova, models.ANO)
         periodos = retriever.get_periodos()
         self.assertEquals(len(periodos), 0)
+  
 
+class PartidoTest(TestCase):
 
-class ModelsTest(TestCase):
-
-    @classmethod
-    def setUpClass(cls):
-        importer = conv.ImportadorConvencao()
-        importer.importar()
-
-    @classmethod
-    def tearDownClass(cls):
-        flush_db(cls)
-
-    def test_partido(self):
+    def test_partido_from_nome(self):
         pt = models.Partido.from_nome('PT')
         self.assertEquals(pt.numero, 13)
         self.assertEquals(pt.cor, '#FF0000')
@@ -228,14 +218,16 @@ class ModelsTest(TestCase):
         self.assertEquals(partido.numero, 0)
         self.assertEquals(partido.cor, '#000000')
 
-    def test_casa_legislativa_partidos(self):
-        casa = models.CasaLegislativa.objects.get(nome_curto='conv')
-        partidos = casa.partidos()
-        self.assertEquals(len(partidos), 3)
-        nomes = [p.nome for p in partidos]
-        self.assertTrue(conv.JACOBINOS in nomes)
-        self.assertTrue(conv.GIRONDINOS in nomes)
-        self.assertTrue(conv.MONARQUISTAS in nomes)
+class CasaLegislativaTest(TestCase):
+
+    @classmethod
+    def setUpClass(cls):
+        importer = conv.ImportadorConvencao()
+        importer.importar()
+
+    @classmethod
+    def tearDownClass(cls):
+        flush_db(cls)
 
     def test_deleta_casa(self):
 
@@ -375,6 +367,27 @@ class ModelsTest(TestCase):
 
         nomes_votacao = [vt.id_vot for vt in depois_objetos_votacao]
         self.assertFalse(' 12345' in nomes_votacao)
+
+    def test_casa_legislativa_partidos(self):
+        casa = models.CasaLegislativa.objects.get(nome_curto='conv')
+        partidos = casa.partidos()
+        self.assertEquals(len(partidos), 3)
+        nomes = [p.nome for p in partidos]
+        self.assertTrue(conv.JACOBINOS in nomes)
+        self.assertTrue(conv.GIRONDINOS in nomes)
+        self.assertTrue(conv.MONARQUISTAS in nomes)
+
+
+class VotacaoTest(TestCase):
+
+    @classmethod
+    def setUpClass(cls):
+        importer = conv.ImportadorConvencao()
+        importer.importar()
+
+    @classmethod
+    def tearDownClass(cls):
+        flush_db(cls)
 
     def test_uma_votacao_por_casa_legislativa(self):
         casa_legislativa = models.CasaLegislativa.objects.get(
