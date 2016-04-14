@@ -190,7 +190,7 @@ class PeriodosRetrieverTest(TestCase):
         retriever = utils.PeriodosRetriever(casa_nova, models.ANO)
         periodos = retriever.get_periodos()
         self.assertEquals(len(periodos), 0)
-  
+
 
 class PartidoTest(TestCase):
 
@@ -217,6 +217,17 @@ class PartidoTest(TestCase):
         self.assertEquals(partido.nome, 'Sem partido')
         self.assertEquals(partido.numero, 0)
         self.assertEquals(partido.cor, '#000000')
+
+    def test__normaliza_nome_partido(self):
+        nome_partido_democratas = models.Partido._normaliza_nome_partido(
+            'DEMOCRATAS')
+        self.assertEquals(nome_partido_democratas, 'DEM')
+        nome_partido_solidaried = models.Partido._normaliza_nome_partido(
+            'SOLIDARIED')
+        self.assertEquals(nome_partido_solidaried, 'SD')
+        nome_partido_sdd = models.Partido._normaliza_nome_partido('SDD')
+        self.assertEquals(nome_partido_sdd, 'SD')
+
 
 class CasaLegislativaTest(TestCase):
 
