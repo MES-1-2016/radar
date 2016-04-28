@@ -534,6 +534,17 @@ Plot = (function ($) {
                 }
             });            
             
+            function get_chefes_do_executivo(){
+                    var chefes_do_executivo = periodos[periodo_atual].chefe_executivo
+                    var lista_chefes = chefes_do_executivo.split(/\s*,\s*/);
+                    var drop_down_chefes = document.getElementById("dropdown-chefes");
+                    drop_down_chefes.innerHTML = '';
+                    for(var i = 0; i< lista_chefes.length; i++){
+                        drop_down_chefes.innerHTML += '<a href="#">'+lista_chefes[i]+'</a>';
+                    }
+            }
+
+            get_chefes_do_executivo();
             label_chefe_executivo.text(periodos[periodo_atual].chefe_executivo);
             label_periodo.text(periodos[periodo_atual].nome);
             quantidade_votacoes = periodos[periodo_atual].nvotacoes;

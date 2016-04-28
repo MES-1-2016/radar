@@ -269,7 +269,7 @@ class JsonAnaliseGenerator:
     # Necessário implementar filtro no dicionário 'chefes_executivos' para retornar os parlamentares
     # entre os períodos 'ano_inicio' e 'ano_fim'
     def get_chefes_executivos_by_date(self, chefes_executivos, ano_inicio, ano_fim):
-        string_chefes_executivos = 'Chefe(s) do executivo: '
+        string_chefes_executivos = ''
         mais_de_um_nome = 0
         for k, v in chefes_executivos.items():
             if ano_inicio >= v[0] and ano_inicio <= v[1] or ano_fim >= v[0] and ano_fim <= v[1]:
