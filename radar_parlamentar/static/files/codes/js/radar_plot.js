@@ -485,10 +485,10 @@ Plot = (function ($) {
 
             // Parlamentares (represented by dots), treating one party at a time in this loop:
             partidos_legenda.forEach(function(partido) {
-                if (jQuery.inArray(partido,partidos_explodidos) == -1)
-                    var parlamentares_no_periodo = []; // não é para ter dados de parlamentares se o partido não estiver explodido.
-                else
+                if (partido_explodido(partido))
                     var parlamentares_no_periodo = get_parlamentares_no_periodo(partido, periodo_atual);
+                else
+                    var parlamentares_no_periodo = []; // não é para ter dados de parlamentares se o partido não estiver explodido.
 
                 // DATA-JOIN dos parlamentares deste partido:
                 var parlamentares = grupo_grafico.selectAll('.parlamentar_circle.partido_' + nome(partido))
@@ -573,7 +573,18 @@ Plot = (function ($) {
         }
 
         function click_legend(party) {
+            if (partido_explodido(party))
+                implode_partido(party);
+            else
+                explode_partido(party);           
             return;
+        }
+
+        function partido_explodido(party) {
+            if (jQuery.inArray(party,partidos_explodidos) == -1)
+                return false;
+            else
+                return true;
         }
 
         function mouseover_party(party) {
@@ -645,7 +656,7 @@ Plot = (function ($) {
         function implode_partido(partido) { //partido é o json do partido
             parlamentar_tip.hide();
             remove_from_array(partidos_explodidos,partido);
-            atualiza_grafico(true);
+            atualiza_grafico(false);
         }
 
         function explode_todos() {
@@ -653,11 +664,10 @@ Plot = (function ($) {
             partidos_explodidos = get_partidos_no_periodo(periodo_atual);
             atualiza_grafico(true);
         }
-
         function implode_todos() {
             parlamentar_tip.hide();
             partidos_explodidos = [];
-            atualiza_grafico(true);
+            atualiza_grafico(false);
         }
 
         // remove o elemento de valor el da array lista, e retorna a lista modificada
@@ -703,7 +713,11 @@ Plot = (function ($) {
 
         // Retorna partidos excluindo partidos ausentes no período e partidos explodidos
         function get_partidos_nao_explodidos_no_periodo(period) {
-            return partidos.filter(function(d){ return d.t[period] > 0 && jQuery.inArray(d,partidos_explodidos) == -1;});
+            return partidos.filter(
+                function(d){ 
+                    return d.t[period] > 0 && jQuery.inArray(d,partidos_explodidos) == -1;
+                }
+            );
         }
         
         // Retorna o json de parlamentares do partido, do qual foram excluídos parlamentares ausentes no dado period.
