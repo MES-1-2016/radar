@@ -367,7 +367,6 @@ Plot = (function ($) {
         // (explosão de partido é quando se clica no partido para ver seus parlamentares)
         function atualiza_grafico(explodindo) {
             
-            
             label_nvotacoes.text("Não há votações relacionadas com as palavras chave informadas");
 
             // Legend
@@ -382,9 +381,9 @@ Plot = (function ($) {
                 .attr("class","legend_item")
                 .attr("id", function(d) { return "legend-"+nome(d); })
                 .text(function(d) {return d.numero + " | " + d.nome + " (" + d.t[periodo_atual] + ")"})
-                .on("mouseover", function(d) { mouseover_legend(d); })
-                .on("mouseout", function(d) { mouseout_legend(d); })
-                .on("click", function(d) { click_legend(d); });
+                .on("mouseover", function(d) { return mouseover_legend(d); })
+                .on("mouseout", function(d) { return mouseout_legend(d); })
+                .on("click", function(d) { return click_legend(d); });
             legend_items.exit().remove();
 
             // Issue#272
@@ -426,10 +425,6 @@ Plot = (function ($) {
                 .attr("id",function(d){return "group-"+nome(d);})
                 .attr("transform", function(d) { return "translate(" + xScalePart(d.x[periodo_atual]) +"," +  yScalePart(d.y[periodo_atual]) + ")";})
                 .attr("opacity",0.00001);
-
-            // title is used for the browser tooltip
-//            new_parties.append("title")
-//                .text(function(d) { return nome(d); });
     
             var new_circles = new_parties.append("circle")
                 .attr("class","party_circle")
@@ -485,10 +480,17 @@ Plot = (function ($) {
 
             // Parlamentares (represented by dots), treating one party at a time in this loop:
             partidos_legenda.forEach(function(partido) {
+
+                var parlamentares_no_periodo;
+
                 if (partido_explodido(partido))
-                    var parlamentares_no_periodo = get_parlamentares_no_periodo(partido, periodo_atual);
+                {
+                    parlamentares_no_periodo = get_parlamentares_no_periodo(partido, periodo_atual);
+                }
                 else
-                    var parlamentares_no_periodo = []; // não é para ter dados de parlamentares se o partido não estiver explodido.
+                {
+                    parlamentares_no_periodo = []; // não é para ter dados de parlamentares se o partido não estiver explodido.
+                }
 
                 // DATA-JOIN dos parlamentares deste partido:
                 var parlamentares = grupo_grafico.selectAll('.parlamentar_circle.partido_' + nome(partido))
@@ -522,6 +524,8 @@ Plot = (function ($) {
                                      .attr("cx", xScale(partido.x[periodo_atual]))
                                      .attr("cy", yScale(partido.y[periodo_atual]))
                         .remove();
+                    
+
                 } else {
                     new_parlamentares.attr("cx", function (d) { return xScale(d.x[periodo_para]); })
                                      .attr("cy", function (d) { return yScale(d.y[periodo_para]); })
@@ -532,7 +536,7 @@ Plot = (function ($) {
 
                     parlamentares.exit().transition().duration(TEMPO_ANIMACAO).attr("r",0).remove();
                 }
-            });            
+            });
             
             label_chefe_executivo.text(periodos[periodo_atual].chefe_executivo);
             label_periodo.text(periodos[periodo_atual].nome);
@@ -540,7 +544,7 @@ Plot = (function ($) {
             label_nvotacoes.text(quantidade_votacoes + " votações"); 
             
             sortAll();
-            
+
             if (periodo_para == periodo_max) mouseout_next();
             if (periodo_para == periodo_min) mouseout_previous();
         }
@@ -572,12 +576,26 @@ Plot = (function ($) {
             sortAll();
         }
 
-        function click_legend(party) {
-            if (partido_explodido(party))
-                implode_partido(party);
+        function checkAdult(partido_array, par) {            
+            return partido_array.numero == par.numero;
+        }
+
+
+        function click_legend(partido) {
+            if (partido_explodido(partido))
+            {
+                implode_partido(partido);
+            }
             else
-                explode_partido(party);           
-            return;
+            {
+                explode_partido(partido);
+            }
+        }
+
+        
+        function sleepFor( sleepDuration ){
+            var now = new Date().getTime();
+            while(new Date().getTime() < now + sleepDuration){ /* do nothing */ } 
         }
 
         function partido_explodido(party) {
@@ -624,6 +642,9 @@ Plot = (function ($) {
             go_to_next.classed("active", false);
             go_to_next.transition()
                 .attr("xlink:href", "/static/assets/arrow_right.svg")
+
+
+            var parlamentares_antigo_todos = grupo_grafico.selectAll('.parlamentar_circle');
         }
 
         function mouseover_previous() {
@@ -656,7 +677,7 @@ Plot = (function ($) {
         function implode_partido(partido) { //partido é o json do partido
             parlamentar_tip.hide();
             remove_from_array(partidos_explodidos,partido);
-            atualiza_grafico(false);
+            atualiza_grafico(true);
         }
 
         function explode_todos() {
@@ -667,7 +688,7 @@ Plot = (function ($) {
         function implode_todos() {
             parlamentar_tip.hide();
             partidos_explodidos = [];
-            atualiza_grafico(false);
+            atualiza_grafico(true);
         }
 
         // remove o elemento de valor el da array lista, e retorna a lista modificada
