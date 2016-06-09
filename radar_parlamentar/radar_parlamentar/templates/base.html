@@ -81,76 +81,78 @@
     </script>
 
     <header id="header" {%block headerAttr %} {% endblock headerAttr %}>
-        <a href="/sim-voto-aberto"><img alt="Voto aberto: Eu apoio!" src="/static/assets/votoaberto/vaberto_branco.svg" style="position: absolute; top: 12px; right: 0; border: 0; z-index:1000;"></a>
-        <div class="bar"></div><!-- the top border -->
-        <section id="navNLogo">
-            <div class="wrap">
-                <div id="logo">
-                    <a href="/">
-                        <img src="/static/assets/logo_radar.svg" alt="Logo Radar Parlamentar" style="width: 150px; height: 110px; position:absolute; top:4px;">
-                    </a>
-                </div>
+        {% spaceless %}
+            <a href="/sim-voto-aberto"><img alt="Voto aberto: Eu apoio!" src="/static/assets/votoaberto/vaberto_branco.svg" style="position: absolute; top: 12px; right: 0; border: 0; z-index:1000;"></a>
+            <div class="bar"></div><!-- the top border -->
+            <section id="navNLogo">
+                <div class="wrap">
+                    <div id="logo">
+                        <a href="/">
+                            <img src="/static/assets/logo_radar.svg" alt="Logo Radar Parlamentar" style="width: 150px; height: 110px; position:absolute; top:4px;">
+                        </a>
+                    </div>
 
-                <!-- Navigation Bar -->
-                <nav id="nav" role="navigation">
-                    <ul id="menu">
-                        <!-- Análises -->
-                        <li id="analises">
-                            <a style="cursor: default;" href="javascript:void(0)">Gráficos</a>
-                            <ul>
-                                <li id="botao_cmsp"><a href="/analises/analise/cmsp/#graficopca">Câmara Municipal de São Paulo</a></li>
-                                <li id="botao_cpd"><a href="/analises/analise/cdep/#graficopca">Câmara dos Deputados</a></li>
-                                <li><a href="/analises/analise/sen/#graficopca">Senado</a></li>
-                                <li><a href="/importadores">Acrescenta mais uma!</a></li>
-                            </ul>
-                        </li>
+                    <!-- Navigation Bar -->
+                    <nav id="nav" role="navigation">
+                        <ul id="menu">
+                            <!-- Análises -->
+                            <li id="analises">
+                                <a style="cursor: default;" href="javascript:void(0)">Gráficos</a>
+                                <ul>
+                                    <li id="botao_cmsp"><a href="/analises/analise/cmsp/#graficopca">Câmara Municipal de São Paulo</a></li>
+                                    <li id="botao_cpd"><a href="/analises/analise/cdep/#graficopca">Câmara dos Deputados</a></li>
+                                    <li><a href="/analises/analise/sen/#graficopca">Senado</a></li>
+                                    <li><a href="/importadores">Acrescenta mais uma!</a></li>
+                                </ul>
+                            </li>
 
-                        <!-- Gênero -->
-                       	<li id="generos">
-                            <a id="genero" href="javascript:void(0)">Gênero</a>
-                            <ul>
-                                <li id="perfil_legis"><a href="/genero/perfil/legislaturas/">Perfil Legislaturas</a></li>
-                                <li id="perfil_part"><a href="/genero/perfil/partido/">Perfil Partido</a></li>
-                                <li id="comp_part"><a href="/genero/perfil/partido/comparacao/">Comparação Perfis Partidários</a></li>
-                                <li id="tematicas_nuvem"><a href="/genero/tematica/nuvem/">Análise: Temáticas</a></li>
-                                <li id="tematicas_matriz"><a href="/genero/tematica/partido/">Análise: Temáticas por Partido</a></li>
-                                <li id="tematicas_treemap"><a href="/genero/tematica/treemap/">Análise: Temáticas por Gênero</a></li>
-                            </ul>
-                        </li>
+                            <!-- Gênero -->
+                            <li id="generos">
+                                <a id="genero" href="javascript:void(0)">Gênero</a>
+                                <ul>
+                                    <li id="perfil_legis"><a href="/genero/perfil/legislaturas/">Perfil Legislaturas</a></li>
+                                    <li id="perfil_part"><a href="/genero/perfil/partido/">Perfil Partido</a></li>
+                                    <li id="comp_part"><a href="/genero/perfil/partido/comparacao/">Comparação Perfis Partidários</a></li>
+                                    <li id="tematicas_nuvem"><a href="/genero/tematica/nuvem/">Análise: Temáticas</a></li>
+                                    <li id="tematicas_matriz"><a href="/genero/tematica/partido/">Análise: Temáticas por Partido</a></li>
+                                    <li id="tematicas_treemap"><a href="/genero/tematica/treemap/">Análise: Temáticas por Gênero</a></li>
+                                </ul>
+                            </li>
 
-                        <!-- Dados -->
-                        <li id="dados">
-                            <a href="/dados/">Dados</a>
-                        </li>
+                            <!-- Dados -->
+                            <li id="dados">
+                                <a href="/dados/">Dados</a>
+                            </li>
 
-                        <!-- Blog -->
-                        <li id="botao_blog">
-                            <a href="http://polignu.org/projetos/radar-parlamentar" target=#>Blog</a>
-                        </li>
+                            <!-- Blog -->
+                            <li id="botao_blog">
+                                <a href="http://polignu.org/projetos/radar-parlamentar" target=#>Blog</a>
+                            </li>
 
-                        <!-- Origem -->
-                        <li id="origem">
-                            <a href="/origem/">História do Projeto</a>
-                        </li>
+                            <!-- Origem -->
+                            <li id="origem">
+                                <a href="/origem/">História do Projeto</a>
+                            </li>
 
-                        <!-- Voto Aberto -->
-                        <li id="botao_votoaberto">
-                            <a href="/sim-voto-aberto/">Voto Aberto</a>
-                        </li>
+                            <!-- Voto Aberto -->
+                            <li id="botao_votoaberto">
+                                <a href="/sim-voto-aberto/">Voto Aberto</a>
+                            </li>
 
-                        <!-- Sobre Nós -->
-                        <li id="sobre_nos">
-                            <a style="cursor: default;">Sobre Nós</a>
-                            <ul>
-                                <li><a href="/ogrupo">O Grupo</a></li>
-                                <li><a href="/premiacoes">Premiações</a></li>
-                                <li><a href="/radarnamidia">Radar na Mídia</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </nav>
-            </div><!-- end of .wrap -->
-        </section><!-- end of #nav -->
+                            <!-- Sobre Nós -->
+                            <li id="sobre_nos">
+                                <a style="cursor: default;">Sobre Nós</a>
+                                <ul>
+                                    <li><a href="/ogrupo">O Grupo</a></li>
+                                    <li><a href="/premiacoes">Premiações</a></li>
+                                    <li><a href="/radarnamidia">Radar na Mídia</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div><!-- end of .wrap -->
+            </section><!-- end of #nav -->
+        {% endspaceless %}
         {% block imageBox %}
         <section id="imageBox" class="headerImages">
             <div class="image {% block headerImgClass %}{% endblock headerImgClass %}"></div>
@@ -164,9 +166,10 @@
 
     <section id="content">
         <ul class="breadcrumbs">
-            {% block breadcrumbs %}{% endblock breadcrumbs %} 
+            {% block breadcrumbs %}{% endblock breadcrumbs %}
         </ul>
         {% if messages %}
+            {% spaceless %}
             <ul class="messages">
                 {% for message in messages %}
                 <div class="notification note-{{ message.tags }}">
@@ -175,10 +178,12 @@
                 </div>
                 {% endfor %}
             </ul>
+            {% endspaceless %}
         {% endif %}
-        {% block content %}{% csrf_token %}{% endblock content %}     
+        {% block content %}{% csrf_token %}{% endblock content %}
 
         <section class="cols">
+            {% spaceless %}
             <div class="half">
                 <div class="stHead"><h4>Lei de acesso a informações públicas</h4></div>
                 <div id="feedback">
@@ -277,111 +282,114 @@
 					</script>
 				</div><!-- end of .tweets -->
             </div><!-- end of .half -->
+            {% endspaceless %}
         </section><!-- end of .cols -->
     </section><!-- end of #content -->
 
     <footer id="footer">
-        <div class="top">
-            <div class="wrap">
-                <section class="cols">
-                    <div class="oneThird">
-                        <div class="stHead"><h2>Links</h2></div>
-                        <div class="col2Links">
-                            <ul class="links">
-                                <li><a href="http://www.planalto.gov.br/ccivil_03/_Ato2011-2014/2011/Lei/L12527.htm">Lei 12527/2011 - Lei de Acesso a Informações Públicas</a></li>
-                                <li><a href="http://dados.gov.br/">Portal Brasileiro de Dados Abertos</a></li>
-                                <li><a href="http://polignu.org/">PoliGNU</a></li>
-                            </ul><!-- end of .links -->
-                            <ul class="links">
-                                <li><a href="http://www.camara.sp.gov.br/index.php?option=com_wrapper&view=wrapper&Itemid=219">Base de Dados da Câmara Municipal de São Paulo</a></li>
-                                <li><a href="http://www2.camara.gov.br/transparencia/dados-abertos">Base de Dados da Câmara dos Deputados</a></li>
-                                <li><a href="http://www.senado.gov.br/transparencia/dadosAbertos/dadosAbertos.asp">Base de Dados do Senado</a></li>
-                            </ul><!-- end of .links -->
-                        </div><!-- end of .col2Links -->
-                    </div><!-- end of .oneThird -->
-                    <div class="oneThird">
-                        <div class="stHead"><h2>Primeiros Posts</h2></div>
-                        <ul class="miniBlogList">
-                            <li>
-                                <a href="#">
-                                    <img src="/static/assets/blogs/mini-list/b-thumb1.jpg" class="border" height="50" width="50" alt="Blog Image" />
-                                </a>
-                                <h5><a href="http://polignu.org/projeto/camaraws/camaraws3">Camaraws: Análise de Partidos na Câmara dos Deputados</a></h5>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img src="/static/assets/blogs/mini-list/b-thumb2.jpg" class="border" height="50" width="50" alt="Blog Image" />
-                                </a>
-                                <h5><a href="http://polignu.org/projeto/camaraws/pca">Análise gráfica das votações da câmara dos deputados</a></h5>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img src="/static/assets/blogs/mini-list/b-thumb3.jpg" class="border" height="50" width="50" alt="Blog Image" />
-                                </a>
-                                <h5><a href="http://polignu.org/projeto/camaraws/análise-automatizada-da-semelhança-entre-os-partidos-políticos">Análise automatizada da semelhança entre os partidos políticos</a></h5>
-                            </li>
-                        </ul>
-                    </div><!-- end of .oneThird -->
-                    <div class="oneThird">
-                        
-                            <div class="stHead"><h2>CONTATE-NOS</h2></div>
-                            <ul class="address">
-    <!--                            <li class="street">Av. Prof. Almeida Prado, trav. 2, n.83, sala S-33 - Edif. de Eng. Civil - Cid. Universitária - São Paulo - SP 05508-900 Brasil</li>
-                                <!-- <li class="phone">+55-11-3091-5690</li> -->
-                                <li class="email"><a href="mailto:radarparlamentar@polignu.org" rel="nofollow">radarparlamentar@polignu.org</a></li>
-                    <li class="email"><a href="mailto:radar@polignu.org" rel="nofollow">radar@polignu.org (lista aberta)</a></li>
-                                <!-- <li class="skype"><a href="skype:circles_support?add" rel="nofollow">circles_support</a></li> -->
-                            </ul><!-- end of .address -->
-                        
-                            <div class="stHead"><h2>APOIO</h2></div>
-                                <ul class="miniBlogList">
-                                    <li>
-                                        <a href="http://unb.br" target="_blank">
-                                            <img src="/static/assets/apoio/unb.jpeg" class="border" height="25" width="90" alt="UnB" />
-                                        </a>
-                                        <h5><a href="http://unb.br" target="_blank">Universidade de Brasília</a></h5>
-                                    </li>
-                                    <li>
-                                        <a href="http://imasters.com.br/" target="_blank">
-                                            <img src="/static/assets/apoio/iMasters.png" class="border" height="30" width="90" alt="iMasters" />
-                                        </a>
-                                        <h5><a href="http://imasters.com.br/" target="_blank">iMasters</a></h5>
-                                    </li>
-                                    <li>
-                                        <a href="http://ccsl.ime.usp.br/" target="_blank">
-                                            <img src="/static/assets/apoio/ccsl.png" class="border" height="25" width="90" alt="CCSL" />
-                                        </a>
-                                        <h5><a href="http://ccsl.ime.usp.br/" target="_blank">Centro de Competência de Software Livre</a></h5>
-                                    </li>
-                                </ul>
-                        
-                    </div><!-- end of .oneThird -->
-                </section><!-- end of .cols -->
-            </div><!-- end of .wrap -->
-        </div><!-- end of .top -->
-        <section class="bottom">
-            
-            <div class="contents">
-                <p class="copy">
-                    Copyright &copy; 2012 | 
-					<a href="http://www.gnu.org/licenses/agpl">Alguns Direitos Reservados: Affero GPL</a> | 
-                    <a href="https://github.com/radar-parlamentar/radar/">Código Fonte deste projeto</a> 
-				</p>
-                <ul class="socialLinks">
-                    <li class="twitter"><a href="https://twitter.com/#!/RadarParlamento">Twitter</a></li>
-                    <li class="facebook"><a href="https://www.facebook.com/RadarParlamentar">Facebook</a></li>
+        {% spaceless %}
+            <div class="top">
+                <div class="wrap">
+                    <section class="cols">
+                        <div class="oneThird">
+                            <div class="stHead"><h2>Links</h2></div>
+                            <div class="col2Links">
+                                <ul class="links">
+                                    <li><a href="http://www.planalto.gov.br/ccivil_03/_Ato2011-2014/2011/Lei/L12527.htm">Lei 12527/2011 - Lei de Acesso a Informações Públicas</a></li>
+                                    <li><a href="http://dados.gov.br/">Portal Brasileiro de Dados Abertos</a></li>
+                                    <li><a href="http://polignu.org/">PoliGNU</a></li>
+                                </ul><!-- end of .links -->
+                                <ul class="links">
+                                    <li><a href="http://www.camara.sp.gov.br/index.php?option=com_wrapper&view=wrapper&Itemid=219">Base de Dados da Câmara Municipal de São Paulo</a></li>
+                                    <li><a href="http://www2.camara.gov.br/transparencia/dados-abertos">Base de Dados da Câmara dos Deputados</a></li>
+                                    <li><a href="http://www.senado.gov.br/transparencia/dadosAbertos/dadosAbertos.asp">Base de Dados do Senado</a></li>
+                                </ul><!-- end of .links -->
+                            </div><!-- end of .col2Links -->
+                        </div><!-- end of .oneThird -->
+                        <div class="oneThird">
+                            <div class="stHead"><h2>Primeiros Posts</h2></div>
+                            <ul class="miniBlogList">
+                                <li>
+                                    <a href="#">
+                                        <img src="/static/assets/blogs/mini-list/b-thumb1.jpg" class="border" height="50" width="50" alt="Blog Image" />
+                                    </a>
+                                    <h5><a href="http://polignu.org/projeto/camaraws/camaraws3">Camaraws: Análise de Partidos na Câmara dos Deputados</a></h5>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="/static/assets/blogs/mini-list/b-thumb2.jpg" class="border" height="50" width="50" alt="Blog Image" />
+                                    </a>
+                                    <h5><a href="http://polignu.org/projeto/camaraws/pca">Análise gráfica das votações da câmara dos deputados</a></h5>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="/static/assets/blogs/mini-list/b-thumb3.jpg" class="border" height="50" width="50" alt="Blog Image" />
+                                    </a>
+                                    <h5><a href="http://polignu.org/projeto/camaraws/análise-automatizada-da-semelhança-entre-os-partidos-políticos">Análise automatizada da semelhança entre os partidos políticos</a></h5>
+                                </li>
+                            </ul>
+                        </div><!-- end of .oneThird -->
+                        <div class="oneThird">
 
-                    <!-- <li class="dribbble"><a href="#">Dribbble</a></li>
-                    <li class="flickr"><a href="#">Flickr</a></li> -->
+                                <div class="stHead"><h2>CONTATE-NOS</h2></div>
+                                <ul class="address">
+        <!--                            <li class="street">Av. Prof. Almeida Prado, trav. 2, n.83, sala S-33 - Edif. de Eng. Civil - Cid. Universitária - São Paulo - SP 05508-900 Brasil</li>
+                                    <!-- <li class="phone">+55-11-3091-5690</li> -->
+                                    <li class="email"><a href="mailto:radarparlamentar@polignu.org" rel="nofollow">radarparlamentar@polignu.org</a></li>
+                        <li class="email"><a href="mailto:radar@polignu.org" rel="nofollow">radar@polignu.org (lista aberta)</a></li>
+                                    <!-- <li class="skype"><a href="skype:circles_support?add" rel="nofollow">circles_support</a></li> -->
+                                </ul><!-- end of .address -->
 
-                </ul><!-- end of socialLinks -->
-                
-                <p class="version">
-                    {% load versao_radar %}
-                    {% versao_radar %}
-                </p> <!-- end of version -->
-            </div><!-- end of .contents -->
-        </section><!-- end of .bottom -->
+                                <div class="stHead"><h2>APOIO</h2></div>
+                                    <ul class="miniBlogList">
+                                        <li>
+                                            <a href="http://unb.br" target="_blank">
+                                                <img src="/static/assets/apoio/unb.jpeg" class="border" height="25" width="90" alt="UnB" />
+                                            </a>
+                                            <h5><a href="http://unb.br" target="_blank">Universidade de Brasília</a></h5>
+                                        </li>
+                                        <li>
+                                            <a href="http://imasters.com.br/" target="_blank">
+                                                <img src="/static/assets/apoio/iMasters.png" class="border" height="30" width="90" alt="iMasters" />
+                                            </a>
+                                            <h5><a href="http://imasters.com.br/" target="_blank">iMasters</a></h5>
+                                        </li>
+                                        <li>
+                                            <a href="http://ccsl.ime.usp.br/" target="_blank">
+                                                <img src="/static/assets/apoio/ccsl.png" class="border" height="25" width="90" alt="CCSL" />
+                                            </a>
+                                            <h5><a href="http://ccsl.ime.usp.br/" target="_blank">Centro de Competência de Software Livre</a></h5>
+                                        </li>
+                                    </ul>
+
+                        </div><!-- end of .oneThird -->
+                    </section><!-- end of .cols -->
+                </div><!-- end of .wrap -->
+            </div><!-- end of .top -->
+            <section class="bottom">
+
+                <div class="contents">
+                    <p class="copy">
+                        Copyright &copy; 2012 |
+                        <a href="http://www.gnu.org/licenses/agpl">Alguns Direitos Reservados: Affero GPL</a> |
+                        <a href="https://github.com/radar-parlamentar/radar/">Código Fonte deste projeto</a>
+                    </p>
+                    <ul class="socialLinks">
+                        <li class="twitter"><a href="https://twitter.com/#!/RadarParlamento">Twitter</a></li>
+                        <li class="facebook"><a href="https://www.facebook.com/RadarParlamentar">Facebook</a></li>
+
+                        <!-- <li class="dribbble"><a href="#">Dribbble</a></li>
+                        <li class="flickr"><a href="#">Flickr</a></li> -->
+
+                    </ul><!-- end of socialLinks -->
+
+                    <p class="version">
+                        {% load versao_radar %}
+                        {% versao_radar %}
+                    </p> <!-- end of version -->
+                </div><!-- end of .contents -->
+            </section><!-- end of .bottom -->
+        {% endspaceless %}
     </footer><!-- end of #footer -->
 
 <!-- JavaScript Libraries and Codes -->
