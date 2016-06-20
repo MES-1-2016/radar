@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br" class="no-js">
 <head>
+{% spaceless %}
     <meta charset="utf-8"/>
     <meta content="text/html"/>
     <meta name="distribution" content="global"/>
@@ -46,6 +47,22 @@
           }
         </script>
 
+
+    {% if request.get_host != '127.0.0.1:8000' and  request.get_host != 'localhost:8000' %}
+        <script type="text/javascript">
+
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-11505683-7']);
+          _gaq.push(['_trackPageview']);
+
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+    {% endif %}
+
         <!-- the jQuery library -->
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <script type="text/javascript">
@@ -64,9 +81,10 @@
 {% block extrahead %}
 {% endblock extrahead %}
 </script>
+{% endspaceless %}
 </head>
 <body>
-
+{% spaceless %}
     <script type="text/javascript">
     window.onload = function() {
       mobile_drop();
@@ -79,7 +97,7 @@
         }
     }
     </script>
-
+{% endspaceless %}
     <header id="header" {%block headerAttr %} {% endblock headerAttr %}>
         {% spaceless %}
             <a href="/sim-voto-aberto"><img alt="Voto aberto: Eu apoio!" src="/static/assets/votoaberto/vaberto_branco.svg" style="position: absolute; top: 12px; right: 0; border: 0; z-index:1000;"></a>
@@ -152,7 +170,6 @@
                     </nav>
                 </div><!-- end of .wrap -->
             </section><!-- end of #nav -->
-        {% endspaceless %}
         {% block imageBox %}
         <section id="imageBox" class="headerImages">
             <div class="image {% block headerImgClass %}{% endblock headerImgClass %}"></div>
@@ -162,14 +179,14 @@
             </hgroup>
         </section><!-- end of #imageBox -->
     </header><!-- end of #header -->
-        {% endblock imageBox %}
-
+      {% endblock imageBox %}
+    {% endspaceless %}
+    {% spaceless %}
     <section id="content">
         <ul class="breadcrumbs">
             {% block breadcrumbs %}{% endblock breadcrumbs %}
         </ul>
         {% if messages %}
-            {% spaceless %}
             <ul class="messages">
                 {% for message in messages %}
                 <div class="notification note-{{ message.tags }}">
@@ -178,12 +195,12 @@
                 </div>
                 {% endfor %}
             </ul>
-            {% endspaceless %}
         {% endif %}
         {% block content %}{% csrf_token %}{% endblock content %}
+    {% endspaceless %}
 
+    {% spaceless %}
         <section class="cols">
-            {% spaceless %}
             <div class="half">
                 <div class="stHead"><h4>Lei de acesso a informações públicas</h4></div>
                 <div id="feedback">
@@ -282,12 +299,11 @@
 					</script>
 				</div><!-- end of .tweets -->
             </div><!-- end of .half -->
-            {% endspaceless %}
         </section><!-- end of .cols -->
     </section><!-- end of #content -->
-
+    {% endspaceless %}
+    {% spaceless %}
     <footer id="footer">
-        {% spaceless %}
             <div class="top">
                 <div class="wrap">
                     <section class="cols">
@@ -389,9 +405,8 @@
                     </p> <!-- end of version -->
                 </div><!-- end of .contents -->
             </section><!-- end of .bottom -->
-        {% endspaceless %}
     </footer><!-- end of #footer -->
-
+    {% endspaceless %}
 <!-- JavaScript Libraries and Codes -->
     <!-- jQuery hoverIntent plugin -->
     <script style="display: none;" src="/static/files/codes/js/jquery.hoverIntent.min.js"></script>
@@ -425,28 +440,11 @@
     <![endif]-->
 
     <link rel="stylesheet" id="colors" href="/static/files/codes/css/colors/orange-green.min.css" type="text/css" />
-
 {% block extrajsend %}
 {% endblock extrajsend %}
 <script type="text/javascript">
 {% block extrascriptsend %}
 {% endblock extrascriptsend %}
 </script>
-
-{% if request.get_host != '127.0.0.1:8000' and  request.get_host != 'localhost:8000' %}
-    <script type="text/javascript">
-    
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-11505683-7']);
-      _gaq.push(['_trackPageview']);
-    
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-    
-    </script>
-{% endif %}
 </body>
 </html>
