@@ -66,10 +66,10 @@
         Os dados da Câmara dos Deputados utilizados para análise estão disponíveis para <a href="https://github.com/radar-parlamentar/radar/">download aqui</a>.<br/><br/>
 
         <p><label for="genero">Gênero:</label>
-        <select id="genero" name="genero">
-            <option value="TODOS">Todos</option>
-            <option value="MASCULINO">Masculino</option>
-            <option value="FEMININO">Feminino</option>
+        <select id="genero" onchange="pegarGenero(this);">
+            <option value="todos">Todos</option>
+            <option value="masculino">Masculino</option>
+            <option value="feminino">Feminino</option>
         </select>
 
         <aside id="legenda" class="list">
@@ -85,19 +85,39 @@
     {% else %}
         <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.0.1/d3.v3.min.js"></script>
         <script type="text/javascript">
-          if (typeof d3 === 'undefined') {
-            var e = document.createElement('script');
+            if (typeof d3 === 'undefined') {
+                var e = document.createElement('script');
                 e.src = '/static/files/codes/js/d3.min.js';
                 e.type='text/javascript';
-            document.getElementsByTagName("head")[0].appendChild(e);
-          }
+                document.getElementsByTagName("head")[0].appendChild(e);
+            }
         </script>
     {% endif %}
     <script src="/static/files/codes/js/genero_matriz.js"></script>
+    <script>
+        function pegarGenero(genero) {
+            document.getElementsByTagName("svg")[0].remove();
+            var e = document.createElement('script');
+            if (genero.value == "masculino") {
+                e.src = '/static/files/codes/js/genero_masculino_matriz.js';
+                e.type='text/javascript';
+                document.getElementsByTagName("head")[0].appendChild(e);
+            } else if (genero.value == "feminino") {
+                e.src = '/static/files/codes/js/genero_feminino_matriz.js';
+                e.type='text/javascript';
+                document.getElementsByTagName("head")[0].appendChild(e);
+            } else {
+                e.src = '/static/files/codes/js/genero_matriz.js';
+                e.type='text/javascript';
+                document.getElementsByTagName("head")[0].appendChild(e);
+            }
+        }
+    </script>
 {% endblock extrajsend %}
 
 {% block extrascriptsend %}
     menuActive("generos");
+
     $(document).ready(function() {
     });
 {% endblock extrascriptsend %}
