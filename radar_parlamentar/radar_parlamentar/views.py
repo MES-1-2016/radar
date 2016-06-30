@@ -91,7 +91,13 @@ def genero_termos_nuvem(request):
 
 
 def genero_matriz(request):
-    return render_to_response('genero_matriz.html', {},
+    genero = Genero()
+    temas_frequentes = genero.definir_palavras_matriz()
+    json_temas_masculino = json.dumps(temas_frequentes)
+
+
+    return render_to_response('genero_matriz.html',
+                              {'temas_frequentes': json_temas_masculino},
                               context_instance=RequestContext(request))
 
 

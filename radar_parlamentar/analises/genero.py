@@ -19,6 +19,7 @@
 
 from modelagem.models import Proposicao
 from modelagem.models import Parlamentar
+from modelagem.models import CasaLegislativa
 
 
 class Genero:
@@ -26,12 +27,14 @@ class Genero:
     @staticmethod
     def definir_palavras(genero):
         temas = []
-        for parlamentar in Parlamentar.objects.filter(genero=genero):
+        for parlamentar in Parlamentar.objects.filter(genero=genero, casa_legislativa_id=2):
             for proposicao in Proposicao.objects.filter(
                     autor_principal=parlamentar.nome):
                 for tema in proposicao.indexacao.split(','):
                     if len(tema) != 0:
                         temas.append(tema.strip().lower())
+
+        print temas
 
         temas_dicionario = {}
 
@@ -46,3 +49,33 @@ class Genero:
         temas_frequencia = temas_frequencia[:51]
 
         return temas_frequencia
+
+    @staticmethod
+    def definir_palavras_matriz():
+        palavras = {}
+        id_casa = CasaLegislativa.objects.get(nome_curto="cdep").id
+
+        for parlamentar in Parlamentar.objects.filter(casa_legislativa_id=id_casa):
+            for proposicao in Proposicao.objects.filter(autor_principal=parlamentar.nome):
+                for tema in proposicao.indexacao.split(','):
+                    if len(tema) != 0:
+                        if palavras.has_key(tema):
+                            palavras[tema][0] = palavras[tema][0] + 1
+                        else:
+                            palavras[tema] = [1, {}]
+
+                        if palavras[tema][1].has_key(parlamentar.partido):
+                            palavras[tema][1][parlamentar.partido.nome] = palavras[tema][1][parlamentar.partido.nome] + 1
+                        else:
+                            palavras[tema][1][parlamentar.partido.nome] = 1
+
+        palavras_ordenados = sorted(
+            palavras.items(), reverse=True, key=lambda palavras: palavras[1])
+        palavras_ordenados = palavras_ordenados[:5]
+
+        print palavras_ordenados
+
+        import json
+        json_data = json.dumps(palavras_ordenados)
+        conteudo_json = json.loads(json_data)
+        print len(conteudo_json[''])
