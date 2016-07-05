@@ -1,0 +1,17 @@
+{
+  "termos": [
+    {
+      "group": 1,
+      "name": " combate",
+      "id": 0
+    },
+    {
+      "group": 1,
+      "name": " utiliza\u00e7\u00e3o", "id": 1}, {"group": 1, "name": "Altera\u00e7\u00e3o", "id": 2}, {"group": 1, "name": " crime", "id": 3}, {"group": 1, "name": " contrabando.", "id": 4}],
+  "partidos": [{"group": 1, "name": "PR", "id": 0}, {"group": 1, "name": "PRB", "id": 1}, {"group": 1, "name": "PP", "id": 2}, {"group": 1, "name": "PMDB", "id": 3}],
+  "links": [
+    {
+      "source": 0,
+      "target": 0,
+      "value": 0
+    }, {"source": 1, "target": 0, "value": 0}, {"source": 2, "target": 0, "value": 0}, {"source": 3, "target": 0, "value": 0}, {"source": 0, "target": 1, "value": 0}, {"source": 1, "target": 1, "value": 0}, {"source": 2, "target": 1, "value": 0}, {"source": 3, "target": 1, "value": 0}, {"source": 0, "target": 2, "value": 0}, {"source": 1, "target": 2, "value": 0}, {"source": 2, "target": 2, "value": 0}, {"source": 3, "target": 2, "value": 0}, {"source": 0, "target": 3, "value": 0}, {"source": 1, "target": 3, "value": 0}, {"source": 2, "target": 3, "value": 0}, {"source": 3, "target": 3, "value": 0}, {"source": 0, "target": 4, "value": 0}, {"source": 1, "target": 4, "value": 0}, {"source": 2, "target": 4, "value": 0}, {"source": 3, "target": 4, "value": 0}]}

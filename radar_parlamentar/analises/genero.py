@@ -73,9 +73,76 @@ class Genero:
             palavras.items(), reverse=True, key=lambda palavras: palavras[1])
         palavras_ordenados = palavras_ordenados[:5]
 
-        print palavras_ordenados
+        termos = []
+        i = 0
+        partidos_dict = {}
 
+        for palavra in palavras_ordenados:
+            info_palavras = {}
+            info_palavras["group"]= 1
+            info_palavras["name"] = palavra[0]
+            info_palavras["id"] = i
+            i = i + 1
+            termos.append(info_palavras)
+
+            for partido in palavra[1][1].items():
+                if partidos_dict.has_key(partido[0]):
+                    partidos_dict[partido[0]] = partidos_dict[partido[0]] + partido[1]
+                else:
+                    partidos_dict[partido[0]] = 1
+
+        partidos_frequentes = sorted(
+            partidos_dict.items(), reverse=True, key=lambda i: i[1])
+        partidos_frequentes = partidos_frequentes[:33]
+
+        partidos = []
+        j = 0
+        for partido in partidos_frequentes:
+            info_partido = {}
+            info_partido["group"] = 1
+            info_partido["name"] = partido[0]
+            info_partido["id"] = j
+            j = j + 1
+            partidos.append(info_partido)
+
+        links = []
+        k = 0
+        for palavra in palavras_ordenados:
+            l = 0
+            for partido in partidos_frequentes:
+                info_links = {}
+                info_links["source"] = l
+                info_links["target"] = k
+                # info_links["value"] = palavra[partido]
+                print palavra
+                print partido
+
+                # if palavra[1][1].has_key(partido[0]):
+                #     print palavra[1][1][partido[0]]
+
+                if palavra[1][1].has_key(partido):
+                    info_links["value"] = palavra[1][1][partido[0]]
+                else:
+                    info_links["value"] = 0
+
+                links.append(info_links)
+
+                l = l + 1
+            k = k + 1
+
+        # json_final = {}
+        # json_final["termos"] = termos
+        # json_final["links"] = links
+        # json_final["partidos"] = partidos
+
+        json_final = {
+            "termos": termos,
+            "links": links,
+            "partidos": partidos
+        }
+
+        print "------------ JSON FINAL ----------------"
         import json
-        json_data = json.dumps(palavras_ordenados)
-        conteudo_json = json.loads(json_data)
-        print len(conteudo_json[''])
+        json_final = json.dumps(json_final)
+        print json_final
+

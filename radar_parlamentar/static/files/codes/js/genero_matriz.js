@@ -1,5 +1,5 @@
 
-d3.json("/static/files/codes/js/genero_base2.json", function(miserables) {
+d3.json("/static/files/codes/js/genero_teste.json", function(miserables) {
   var matrix = [],
       partidos = miserables.partidos,
       termos = miserables.termos,
